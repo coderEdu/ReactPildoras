@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .galeria {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 80%;
+        }
+        .galeria div {
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Galería de imágenes</h1>
+    <div style="text-align: center; margin: 15px auto;">
+        <label for="img_url">Url:</label>
+        <input type="text" name="img_url" id="img_url">
+        <label for="img_foot" style="margin-left: 15px;">Foot:</label>
+        <input type="text" name="img_foot" id="img_foot">
+        <button onclick="agregaImagen()">Upload</button>
+    </div>  
+    <div class="galeria" id="gal_container">
+        <div>
+            <img src="Img/paisaje1.jpg" alt="Imgagen 1" width="300" height="250">
+            <p>Pie de foto 1</p>
+        </div>
+        <div>
+            <img src="Img/paisaje2.jpg" alt="Imgagen 2" width="300" height="250">
+            <p>Pie de foto 2</p>
+        </div>
+        <div>
+            <img src="Img/paisaje3.jpg" alt="Imgagen 3" width="300" height="250">
+            <p>Pie de foto 3</p>
+        </div>
+        <div>
+            <img src="Img/paisaje4.jpg" alt="Imgagen 4" width="300" height="250">
+            <p>Pie de foto 4</p>
+        </div>
+    </div>
+
+    <script>
+        function agregaImagen() {
+            let url = document.getElementById("img_url").value;
+            let foot = document.getElementById("img_foot").value;
+            if (url && foot) {
+                let galContainer = document.getElementById("gal_container");
+                let div = document.createElement("div");
+                let img = document.createElement("img");
+                img.width = 300;
+                img.height = 250;
+                img.src = url;
+                let p = document.createElement("p");
+                p.textContent = foot;
+                div.appendChild(img);
+                div.appendChild(p);
+                galContainer.appendChild(div);
+                document.getElementById("img_url").value = "";
+                document.getElementById("img_foot").value = "";
+            } else {
+                alert("Debes ingresar url y pie de imagen");
+            }
+            
+        }        
+    </script>
+</body>
+</html>
