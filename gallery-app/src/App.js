@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import './App.css';
+import video from "./assets/Video.mp4";
 
-/*  La misma galería de imágenes pero esta vez usando react y no vanilla js.
-    ************************************************************************
+/*  ####################    La misma galería de imágenes pero esta vez usando react y no vanilla js. #####################
+    **********************************************************************************************************************
 
 function GaleriaDeImagenes() {
   const [imagenes, setImagenes] = useState([
@@ -44,7 +46,10 @@ function GaleriaDeImagenes() {
 }
 */
 
-//vids-(7-8)
+//  ######################################   vids-(7-8)   ##############################################
+//  ****************************************************************************************************
+//
+/*
 function App() {
   // Definir el estado para almacenar el resultado de la suma.
   const [resultado, setResultado] = useState(null);
@@ -59,7 +64,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <button onClick={ShowSuma} style={{padding: "10px"}}>Click me</button>
-          {elemento}{/*{Suma(5,7)}*/}{(resultado != null) && <h3>El resultado es: {resultado}</h3>}
+          {elemento}{{Suma(5,7)}}{(resultado != null) && <h3>El resultado es: {resultado}</h3>}
         </header>
       </div>
   );
@@ -68,4 +73,34 @@ function App() {
 function Suma(a, b) {
   return a + b;
 }
-export default GaleriaDeImagenes;
+*/
+
+//  ######################################   vid-(9) Reproductor de video   ##############################################
+//  **********************************************************************************************************************
+//
+function App() {
+  const videoRef = useRef(null);
+
+  const videoPlay = () => {
+    videoRef.current.play();
+  }
+
+  const videoPause = () => {
+    videoRef.current.pause();
+  }
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <video ref={videoRef} width="600">
+          <source src={video} type='video/mp4'></source>
+        </video>
+        <div className='SpaceBtwButtons'>
+          <button onClick={videoPlay} className='BtnSkin'>Play</button>
+          <button onClick={videoPause} className='BtnSkin'>Pause</button>
+        </div>
+      </header>
+    </div>
+  );
+}
+export default App;

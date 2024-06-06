@@ -28,6 +28,25 @@
   color: #61dafb;
 }
 
+/* video 9 */
+.SpaceBtwButtons {
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.BtnSkin {
+  width: 65px;
+  padding: 5px;
+  background-color: rgb(33, 31, 32);
+  color: azure;
+  font-size: medium;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
