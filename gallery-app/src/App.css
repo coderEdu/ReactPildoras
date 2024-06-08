@@ -40,10 +40,17 @@
 }
 
 .BtnSkin {
-  width: 65px;
+  width: 80px;
   padding: 5px;
   background-color: rgb(33, 31, 32);
   color: azure;
+  font-size: medium;
+}
+
+/* video 10 */
+.TxtEurDol {
+  margin-bottom: 15px;
+  padding: 5px 0;
   font-size: medium;
 }
 

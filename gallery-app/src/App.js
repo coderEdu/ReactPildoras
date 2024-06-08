@@ -1,7 +1,3 @@
-import React, { useState, useRef } from 'react';
-import './App.css';
-import video from "./assets/Video.mp4";
-
 /*  ####################    La misma galería de imágenes pero esta vez usando react y no vanilla js. #####################
     **********************************************************************************************************************
 
@@ -78,6 +74,7 @@ function Suma(a, b) {
 //  ######################################   vid-(9) Reproductor de video   ##############################################
 //  **********************************************************************************************************************
 //
+/*
 function App() {
   const videoRef = useRef(null);
 
@@ -102,5 +99,41 @@ function App() {
       </header>
     </div>
   );
+}*/
+
+//  ######################################   vid-(10) Conversor Euro-Dolar   ##############################################
+//  ***********************************************************************************************************************
+//
+import {useRef} from 'react';
+import './App.css';
+// import video from "./assets/Video.mp4";
+
+function App() {
+  const inputRef = useRef();
+  const resulRef = useRef();
+  
+  const Converter = () => { 
+    const entered_val = parseFloat(inputRef.current.value);
+    let eurValue = 0;
+    if (isNaN(entered_val)) {
+      eurValue = 0;
+    } else {
+      eurValue = entered_val;
+    }
+    const d = eurValue * 1.08;
+    resulRef.current.innerHTML = d.toFixed(2) + " $USD";
+  }
+    
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <h1>Conversor Euro-Dólar</h1>
+        <input type='text' className='TxtEurDol' ref={inputRef}></input>
+        <button className='BtnSkin' onClick={Converter}>Convertir</button>
+        <h2 ref={resulRef}></h2>
+      </header>
+    </div>
+  );  
 }
+
 export default App;
