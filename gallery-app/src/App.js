@@ -104,10 +104,10 @@ function App() {
 //  ######################################   vid-(10) Conversor Euro-Dolar   ##############################################
 //  ***********************************************************************************************************************
 //
-import {useRef} from 'react';
-import './App.css';
-// import video from "./assets/Video.mp4";
+// import {useRef} from 'react';
+// import './App.css';
 
+/*
 function App() {
   const inputRef = useRef();
   const resulRef = useRef();
@@ -135,5 +135,56 @@ function App() {
     </div>
   );  
 }
+*/
 
+//  ######################################   vid-(11) Conversor Euro-Dolar [consultando API Externa]   ##############################################
+//  *************************************************************************************************************************************************
+//
+import {useRef, useState, useEffect} from 'react';
+import './App.css';
+
+function App() {
+  const [valorCambio, setValorCambio] = useState(null);
+  const inputRef = useRef();
+  const resulRef = useRef();
+
+  useEffect(() => {
+    const llamaApiCambio = async() => {
+      try {
+        const respuesta = await fetch("https://v6.exchangerate-api.com/v6/f9327cf5ee671352856fb9b9/latest/USD");
+        const datos = await respuesta.json();
+        console.log(datos);
+        setValorCambio(datos.conversion_rates.USD);
+      } catch (error) {
+        console.error("Error al acceder  a la API: ", error);
+      }
+    }
+    llamaApiCambio();
+  }, [])
+  
+
+
+  const Converter = () => { 
+    const entered_val = parseFloat(inputRef.current.value);
+    let eurValue = 0;
+    if (isNaN(entered_val)) {
+      eurValue = 0;
+    } else {
+      eurValue = entered_val;
+    }
+    const d = eurValue * valorCambio;
+    resulRef.current.innerHTML = d.toFixed(2) + " $USD";
+  }
+    
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <h1>Conversor Euro-Dólar</h1>
+        <input type='text' className='TxtEurDol' placeholder='Monto en Euros' ref={inputRef}></input>
+        <button className='BtnSkin' onClick={Converter}>Convertir</button>
+        <h2 ref={resulRef}></h2>
+      </header>
+    </div>
+  );  
+}
 export default App;
